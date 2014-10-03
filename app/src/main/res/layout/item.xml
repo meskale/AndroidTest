@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="fill_parent"
+            android:id="@+id/itemImage"
+            android:layout_gravity="center_vertical|left"
+            android:contentDescription="item Image"
+            android:src="@drawable/ic_launcher" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:text="Item Text"
+            android:id="@+id/itemText"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/itemImage" />
+
+</RelativeLayout>

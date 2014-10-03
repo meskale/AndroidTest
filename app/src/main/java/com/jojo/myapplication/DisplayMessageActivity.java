@@ -1,28 +1,46 @@
 package com.jojo.myapplication;
 
+import android.net.Uri;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
+
+import com.jojo.myapplication.com.jojo.myapplication.model.Maison;
 
 
 public class DisplayMessageActivity extends Activity {
+
+    protected  String message ="" ;
+    static final String MESSAGE = "MESSAGE";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_message);
 
+
+
         Intent intent = getIntent();
-        String message = intent.getStringExtra(MyActivity.EXTRA_MESSAGE);
 
-        TextView textView = new TextView(this);
-        textView.setTextSize(40);
+        Maison maison = (Maison) intent.getSerializableExtra("MAISON");
+        if(maison!=null){
+            message += maison.getAdresse();
+            message += maison.getNom();
+            message += maison.getTelephone();
+        }
+
+        message += intent.getStringExtra(MyActivity.EXTRA_MESSAGE);
+        int size =intent.getIntExtra(MyActivity.EXTRA_SIZE,40);
+
+        TextView textView = (TextView)findViewById(R.id.text);
         textView.setText(message);
+        textView.setTextSize(size);
 
-        setContentView(textView);
     }
 
 
@@ -33,15 +51,30 @@ public class DisplayMessageActivity extends Activity {
         return true;
     }
 
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
+        switch (id) {
+
+            case R.id.action_close:
+                this.finish();
+
+                return true;
+            case R.id.action_call:
+
+                Uri number = Uri.parse("tel:666");
+                Intent callIntent = new Intent(Intent.ACTION_DIAL, number);
+                startActivity(callIntent);
+                return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void onClick(View view){
+        this.finish();
     }
 }

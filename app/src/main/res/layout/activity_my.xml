@@ -2,18 +2,73 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal" >
+    tools:context=".MyActivity">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+        <fragment
+            android:layout_width="74dp"
+            android:layout_height="wrap_content"
+            android:name="com.jojo.myapplication.ToggleFragment"
+            tools:layout="@layout/fragment_toggle"
+            android:id="@+id/ToggleFrag"
+            android:layout_gravity="left|top" />
+
+        <fragment
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:name="com.jojo.myapplication.SlideFragment"
+            android:id="@+id/SlideFrag"
+            tools:layout="@layout/fragment_slide" />
+
+    </LinearLayout>
 
     <EditText android:id="@+id/edit_message"
         android:layout_height="match_parent"
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:hint="@string/edit_message" />
-
-    <Button
         android:layout_width="wrap_content"
+        android:layout_weight="0.09"
+        android:hint="@string/edit_message"
+        android:inputType="textCapCharacters|text" />
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/button_send"
-        android:onClick="sendMessage"
-           />
+        android:layout_gravity="center_vertical"
+        android:layout_weight="1">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Send"
+            android:id="@+id/send"
+            android:onClick="sendMessage" />
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:text="map"
+            android:id="@+id/buttonMap"
+            android:onClick="openMap"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Hello"
+            android:id="@+id/hello"
+            android:onClick="sayHello" />
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/ListeMaison"
+            android:choiceMode="singleChoice"
+            android:clickable="true" />
+
+    </LinearLayout>
+
 </LinearLayout>
